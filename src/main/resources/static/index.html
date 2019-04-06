@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>晓风轻AJAX跨越完全讲解</title>
+    <script src="jquery-2.0.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="jasmine-3.4.0/jasmine.css">
+
+    <script src="jasmine-3.4.0/jasmine.js"></script>
+    <script src="jasmine-3.4.0/jasmine-html.js"></script>
+    <script src="jasmine-3.4.0/boot.js"></script>
+</head>
+<body>
+    <a href="#" onclick="get1()">发送get1请求</a>
+<script>
+    function get1() {
+        $.getJSON("http://localhost:8080/test/get1").then(
+            function(result){
+                console.log(result)
+             }
+        );
+    }
+</script>
+</body>
+</html>
