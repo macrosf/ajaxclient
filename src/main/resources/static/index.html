@@ -11,8 +11,10 @@
     <script src="jasmine-3.4.0/boot.js"></script>
 </head>
 <body>
+<!--
     <a href="#" onclick="get1()">发送get1请求</a>
     <img src="http://localhost:8080/test/get1"/>
+-->
 <script>
     function get1() {
         $.getJSON("http://localhost:8080/test/get1").then(
@@ -38,6 +40,34 @@
 
             $.getJSON(base + "/get1").then(function(jsonObj) {
                 result = jsonObj;
+            });
+
+            // 由于是异步请求，需要使用setTimeout来校验
+            setTimeout(function() {
+                console.log(result);
+                expect(result).toEqual({
+                    "data" : "get1 ok"
+                });
+
+                // 校验完成，通知jasmine框架
+                done();
+            }, 100);
+        });
+    });
+
+    //测试模块2-jsonp
+    describe("晓风轻-ajax跨越完全讲解", function() {
+        // 测试方法
+        it("jsonp请求", function(done) {
+            // 服务器返回的结果
+            var result;
+
+            $.ajax({
+                url:base+"/get1",
+                dataType:"jsonp",
+                success:function(json){
+                    result = json
+                }
             });
 
             // 由于是异步请求，需要使用setTimeout来校验
