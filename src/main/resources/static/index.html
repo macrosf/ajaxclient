@@ -53,6 +53,42 @@
         });
     });
 
+    //测试模块5-getHeader(自定义头)
+    describe("测试模块5-getHeader", function() {
+        // 测试方法
+        it("getCookie请求", function(done) {
+            // 服务器返回的结果
+            var result;
+
+            $.ajax({
+                type:"get",
+                url:base+"/getCookie",
+                //jQuery中带自定义头的方法1
+                headers:{
+                    "x-header1":"AAA
+                },
+                //jQuery中带自定义头的方法2
+                beforeSend:function(xhr){
+                    xhr.setRequestHeader("x-header2","BBB")
+                },
+                success:function(json){
+                    result = json;
+                }
+            });
+
+            // 由于是异步请求，需要使用setTimeout来校验
+            setTimeout(function() {
+                console.log(result);
+                expect(result).toEqual({
+                    "data" : "getCookie AAA BBB"
+                });
+
+                // 校验完成，通知jasmine框架
+                done();
+            }, 100);
+        });
+    });
+/*
     //测试模块4-getCookie
     describe("测试模块4-getCookie", function() {
         // 测试方法
@@ -83,7 +119,7 @@
             }, 100);
         });
     });
-
+*/
 /*
     //测试模块3-postJson
     describe("测试模块3-postJson", function() {
