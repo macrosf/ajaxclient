@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <title>晓风轻AJAX跨越完全讲解</title>
     <script src="jquery-2.0.0.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="jasmine-2.8.0/jasmine.css">
+    <link rel="stylesheet" type="text/css" href="jasmine-3.4.0/jasmine.css">
 
-    <script src="jasmine-2.8.0/jasmine.js"></script>
-    <script src="jasmine-2.8.0/jasmine-html.js"></script>
-    <script src="jasmine-2.8.0/boot.js"></script>
+    <script src="jasmine-3.4.0/jasmine.js"></script>
+    <script src="jasmine-3.4.0/jasmine-html.js"></script>
+    <script src="jasmine-3.4.0/boot.js"></script>
 </head>
 <body>
 <!--
@@ -23,11 +23,12 @@
 		}
 
     // 每一个测试用例的超时时间
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 3000;
 
     // 请求的接口的前缀 // http://127.0.0.1:8080/test
     // var base = "/ajaxserverapache";
-    var base = "http://127.0.0.1:8080/test";
+    // var base = "http://127.0.0.1:8080/test";
+    var base = "http://macrosf.com/test";
 
     //测试模块
     describe("晓风轻-ajax跨越完全讲解", function() {
@@ -51,18 +52,15 @@
                 done();
             }, 100);
         });
-    });
 
-    //测试模块5-getHeader(自定义头)
-    describe("测试模块5-getHeader", function() {
-        // 测试方法
+        // 测试方法5-getHeader(自定义头)
         it("getHeader请求", function(done) {
             // 服务器返回的结果
             var result;
 
             $.ajax({
                 type:"get",
-                url:base+"/getHeader",
+                url:base + "/getHeader",
                 //jQuery中带自定义头的方法1
                 headers:{
                     "x-header1":"AAA"
@@ -87,18 +85,15 @@
                 done();
             }, 100);
         });
-    });
 
-    //测试模块4-getCookie
-    describe("测试模块4-getCookie", function() {
-        // 测试方法
+        //测试方法4-getCookie
         it("getCookie请求", function(done) {
             // 服务器返回的结果
             var result;
 
             $.ajax({
                 type:"get",
-                url:base+"/getCookie",
+                url:base + "/getCookie",
                 xhrFields:{
                     withCredentials:true
                 },
@@ -118,12 +113,9 @@
                 done();
             }, 100);
         });
-    });
 
 /*
-    //测试模块3-postJson
-    describe("测试模块3-postJson", function() {
-        // 测试方法
+        //测试方法3-postJson
         it("postJson请求", function(done) {
             // 服务器返回的结果
             var result;
@@ -149,13 +141,8 @@
                 done();
             }, 100);
         });
-    });
-*/
 
-/*
-    //测试模块2-jsonp
-    describe("测试模块2-jsonp", function() {
-        // 测试方法
+        //测试方法2-jsonp
         it("jsonp请求", function(done) {
             // 服务器返回的结果
             var result;
@@ -179,8 +166,8 @@
                 done();
             }, 100);
         });
-    });
 */
+    });
 
 </script>
 </body>
